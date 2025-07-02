@@ -7,8 +7,6 @@ import copy
 from functools import lru_cache
 from nltk.parse.generate import generate
 
-# BFS（注意BFS必须有grammar作为输入，不然没意义）
-
 def clean_text(s):
         # clean "... [xx]" to (..., xx)
         text_list = s.split("[")

@@ -31,12 +31,11 @@ def generate_sentence(rules, start_symbol="S", max_depth=50, max_length=20):
         if symbol not in rules:
             return [symbol]
         
-        # 动态调整权重，如果快到 max_length，就倾向选择较短的 RHS
         rhs_options = []
         adjusted_weights = []
         for rhs, weight in rules[symbol]:
-            rhs_len = sum(1 for s in rhs if s.startswith("'"))  # 粗略估计终结符数量
-            penalty = 1.0 if token_count + rhs_len <= max_length else 0.1  # 惩罚超长
+            rhs_len = sum(1 for s in rhs if s.startswith("'"))
+            penalty = 1.0 if token_count + rhs_len <= max_length else 0.1
             rhs_options.append(rhs)
             adjusted_weights.append(weight * penalty)
 
@@ -54,13 +53,11 @@ def generate_sentence(rules, start_symbol="S", max_depth=50, max_length=20):
     token_count = 0
     return expand(start_symbol)
 
-# 示例文法
 grammar_text = """
 S -> S S [0.5] | A [0.5]
 A -> 'a' [0.07692307692307693] | 'b' [0.07692307692307693] | 'c' [0.07692307692307693] | 'a' 'b' 'c' [0.7692307692307693]
 """
 
-# 使用
 rules = parse_grammar_string(grammar_text)
 for _ in range(10):
     sentence = generate_sentence(rules, max_length=10)
