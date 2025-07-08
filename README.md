@@ -14,4 +14,4 @@ This is the GitHub repository for storing relevant code files for the hex projec
 
 - hex_game_3.py: the third (and the current) version of a hex game, with the same design choices as in Ana's experiment.
 
-- solver.py: a script for searching all the possible action chains that could solve a problem within a certain chain length. Possible to use both shapes and action sequences as input.
+- solver.py: a script for searching all the possible action chains that could solve a problem within a certain chain length. Possible to use both shapes or action sequences as input.
